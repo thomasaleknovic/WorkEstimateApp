@@ -2,11 +2,13 @@ import Button from '@mui/material/Button';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import { Stack } from '@mui/material';
-
+import { useRouter } from 'next/navigation'
 
 
 export default function NewEstimateForm() {
-   
+  
+
+  const router = useRouter()
 
     const formContext = useForm<{
       estimateName: string,
@@ -16,8 +18,29 @@ export default function NewEstimateForm() {
   
       }>();
 
+      function handleSubmit (data: any) {
+
+       
+        try {
+
+          fetch("https://workestimateapi.onrender.com/api/estimate/new", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              
+            },
+            body: JSON.stringify(data),
+          })
+
+          
+        } catch {
+
+        }
+       return router.push('/meus-orcamentos')
+      }
+
     return (
-        <FormContainer formContext={formContext} onSuccess={data => console.log(data)}>
+        <FormContainer formContext={formContext} onSuccess={data => handleSubmit(data)}>
         <Stack spacing={2}>
           <TextFieldElement name={'estimateName'} label={'Nome do orçamento'} />
           <TextFieldElement name={'customerName'} label={'Nome do cliente'} />
