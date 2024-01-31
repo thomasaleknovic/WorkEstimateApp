@@ -72,7 +72,8 @@ function Row(props: { row: Orcamentos }) {
                     <TableCell></TableCell>
                     <TableCell></TableCell>
                     <TableCell align="right">
-                      <Button variant="contained" className='mt-4'>Ver orçamento completo</Button>
+                      <Button variant="contained" className='mt-4 !bg-[#1976d2]' >
+                        <a href={`orcamento/${row.estimateId}`}>Ver orçamento completo</a></Button>
                       </TableCell>
                     </TableRow>
                 </TableBody>
