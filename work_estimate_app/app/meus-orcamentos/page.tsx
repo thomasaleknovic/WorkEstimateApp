@@ -34,36 +34,6 @@ export default function MeusOrcamentos() {
             console.log(orcamentos)
             setIsLoading(false)
           })
-
-        // let orcamentos1 = {
-        //     "estimateId": "12312412312",
-        //     "estimateNumber": "000001",
-        //     "estimateName": "Orçamento 1",
-        //     "customerName": "Thomas",
-        //     "cpf": "3125213123",
-        //     "address": "Rua 1 de janeiro",
-        //     "createdAt": "12/12/2020",
-        //     "totalPrice": "R$1000",
-        //     "jobDetails": "detalhes"
-        // }
-
-        // let orcamentos2 = {
-        //     "estimateId": "12312412312",
-        //     "estimateNumber": "000002",
-        //     "estimateName": "Orçamento 2",
-        //     "customerName": "Ana Laura",
-        //     "cpf": "3125213123",
-        //     "address": "Rua 1 de janeiro",
-        //     "createdAt": "12/12/2020",
-        //     "totalPrice": "R$1000",
-        //     "jobDetails": "detalhes"
-        // }
-
-        // let data: [Orcamentos] = [orcamentos1]
-        // data.push(orcamentos2)
-
-        // setOrcamentos(data)
-        // setIsLoading(false)
     }, [])
 
 
