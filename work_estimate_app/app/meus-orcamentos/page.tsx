@@ -27,7 +27,7 @@ export default function MeusOrcamentos() {
 
     useEffect(() => {
 
-           fetch('https://workestimateapi.onrender.com/api/estimate/all')
+           fetch('https://workestimate.azurewebsites.net/api/estimate/all')
           .then((res) => res.json())
           .then((data) => {
            setOrcamentos(data)

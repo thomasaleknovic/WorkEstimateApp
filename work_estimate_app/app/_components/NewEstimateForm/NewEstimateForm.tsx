@@ -13,8 +13,13 @@ export default function NewEstimateForm() {
     const formContext = useForm<{
       estimateName: string,
       customerName: string,
+      phone: string,
       cpf: string,
+      cep: string,
       address: string,
+      paymentMethod: string,
+      observation: string
+
   
       }>();
 
@@ -23,7 +28,7 @@ export default function NewEstimateForm() {
        
         try {
 
-          fetch("https://workestimateapi.onrender.com/api/estimate/new", {
+          fetch("https://workestimate.azurewebsites.net/api/estimate/new", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -44,8 +49,12 @@ export default function NewEstimateForm() {
         <Stack spacing={2}>
           <TextFieldElement name={'estimateName'} label={'Nome do orçamento'} />
           <TextFieldElement name={'customerName'} label={'Nome do cliente'} />
+          <TextFieldElement name={'phone'} label={'Telefone do cliente'} />
           <TextFieldElement name={'cpf'} label={'CPF do cliente'} />
+          <TextFieldElement name={'cep'} label={'CEP do cliente'} />
           <TextFieldElement name={'address'} label={'Endereço do cliente'} />
+          <TextFieldElement name={'paymentMethod'} label={'Forma de pagamento'} />
+          <TextFieldElement name={'observation'} label={'Observação'} />
           <Button type={'submit'} color={'primary'} variant="contained" className='!bg-[#1976d2] !h-14'>
             Criar orçamento
           </Button>

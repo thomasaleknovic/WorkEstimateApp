@@ -79,7 +79,7 @@ export default function Orcamento() {
 
     useEffect(() => {
 
-        fetch(`https://workestimateapi.onrender.com/api/estimate/${params.id}`)
+        fetch(`https://workestimate.azurewebsites.net/api/estimate/${params.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setOrcamento(data)
@@ -95,7 +95,7 @@ export default function Orcamento() {
         <main>
             <div>
                 {
-                    !isLoading ? <div className="flex flex-row flex-sh justify-center gap-20 flex-wrap mt-20">
+                    !isLoading ? <div className="flex flex-row flex-sh justify-center gap-20 flex-wrap mt-20 pb-[10vw]">
                         <div className="w-[30vw]">
                             <OrcamentoInfo data={orcamento} />
                         </div>

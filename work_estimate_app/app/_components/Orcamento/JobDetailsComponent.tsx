@@ -43,7 +43,7 @@ function EditToolbar(props: EditToolbarProps) {
 
   const handleClick = () => {
     const id = randomId();
-    setRows((oldRows) => [...oldRows, { id, title: '', description: '', price: '', isNew: true }]);
+    setRows((oldRows) => [...oldRows, { id, title: '', description: '', quantity: '', unitPrice: '', isNew: true }]);
     setRowModesModel((oldModel) => ({
       ...oldModel,
       [id]: { mode: GridRowModes.Edit, fieldToFocus: 'title' },
@@ -71,7 +71,7 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
   function mySaveOnServerFunction(updatedRow: any, originalRow: any, id: string) {
 
     if(originalRow.title.length > 1) {
-      fetch(`https://workestimateapi.onrender.com/api/estimate/${id}/edit/details`, {
+      fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
       
     } else {
 
-      fetch(`https://workestimateapi.onrender.com/api/estimate/${id}/edit/details`, {
+      fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
   const handleDeleteClick = (jobDetailId: GridRowId, id: string) => () => {
     setRows(rows.filter((row) => row.id !== id));
 
-    fetch(`https://workestimateapi.onrender.com/api/estimate/${id}/edit/details`, {
+    fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -154,10 +154,19 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
       editable: true,
     },
     {
-        field: 'price',
-        headerName: 'Custo',
+      field: 'quantity',
+      headerName: 'Quantidade',
+      type: 'number',
+      width: 100,
+      align: 'left',
+      headerAlign: 'left',
+      editable: true,
+    },
+    {
+        field: 'unitPrice',
+        headerName: 'Custo unitário',
         type: 'number',
-        width: 200,
+        width: 100,
         align: 'left',
         headerAlign: 'left',
         editable: true,

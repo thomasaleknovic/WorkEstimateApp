@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Orcamentos } from '@/app/meus-orcamentos/page';
+import TotalPriceFormComponent from './TotalPriceFormComponent';
 
 
 
@@ -15,7 +16,7 @@ import { Orcamentos } from '@/app/meus-orcamentos/page';
 export default function OrcamentoInfo({data}: any) {
   return (
     <div>
-      <h1 className='font-bold text-[3rem]'>{data.estimateName}</h1>
+      <h1 className='font-bold text-[2.5rem] mb-5'>{data.estimateName}</h1>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 400 }} aria-label="simple table">
         <TableBody>
@@ -51,6 +52,39 @@ export default function OrcamentoInfo({data}: any) {
              </TableCell>
              <TableCell component="th" scope="row">
                {data.address}
+             </TableCell>
+           </TableRow>
+           <TableRow
+             
+             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+           >
+             <TableCell component="th" scope="row" className='text-xs opacity-80'>
+               Forma de Pagamento
+             </TableCell>
+             <TableCell component="th" scope="row">
+               {data.paymentMethod}
+             </TableCell>
+           </TableRow>
+           <TableRow
+             
+             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+           >
+             <TableCell component="th" scope="row" className='text-xs opacity-80'>
+               Observação
+             </TableCell>
+             <TableCell component="th" scope="row">
+               {data.observation}
+             </TableCell>
+           </TableRow>
+           <TableRow
+             
+             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+           >
+             <TableCell component="th" scope="row" className='text-xs opacity-80'>
+               Preço final
+             </TableCell>
+             <TableCell component="th" scope="row">
+              <TotalPriceFormComponent data={data} />
              </TableCell>
            </TableRow>
           
