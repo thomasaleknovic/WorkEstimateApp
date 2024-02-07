@@ -10,6 +10,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 export type Orcamentos = {
     estimateId: string,
     estimateNumber: string,
+    serviceOrder: string,
     estimateName: string,
     customerName: string,
     cpf: string,
