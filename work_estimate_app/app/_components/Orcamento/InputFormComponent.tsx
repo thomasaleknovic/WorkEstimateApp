@@ -5,17 +5,23 @@ import { useEffect, useState } from 'react';
 export default function InputFormComponent({data, defaultValue, type}: any) {
 
     const [inputType, setInputType] = useState<string>("text")
-   
+    let timeoutId: any;
+
     useEffect(() => {
         if (type === "totalPrice") {
             setInputType("number")
         }
     }, [])
+  
 
-      function handleChange (info: any) {
-        let updateEstimate = data
+  const handleThrottledChange = (info: any) => {
+    // Cancela o timeout anterior se houver
+    clearTimeout(timeoutId);
 
-        
+    // Configura um novo timeout para a próxima chamada
+    timeoutId = setTimeout(() => {
+     
+      let updateEstimate = data
       
         if (type === "totalPrice") {
             setInputType("number")
@@ -40,6 +46,7 @@ export default function InputFormComponent({data, defaultValue, type}: any) {
             updateEstimate.customerName = info.target.value
         }
         
+        console.log("!!!!!!!!!!!!!!!!!Rodou a função!!!!!!!!!!!!!!!!!!!!!!!!!")
         try {
           
           fetch(`https://workestimate.azurewebsites.net/api/estimate/${data.estimateId}/edit`, {
@@ -53,8 +60,15 @@ export default function InputFormComponent({data, defaultValue, type}: any) {
 
           
         } catch {
-
+          throw new Error("Erro ao atualizar orçamento, revise os dados e tente novamente.")
         }
+     
+    }, 1000); // 1000 milissegundos (1 segundo) de intervalo
+  };
+
+
+      function handleChange (info: any) {
+        handleThrottledChange(info);
       }
 
 
