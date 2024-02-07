@@ -102,8 +102,8 @@ export default function Orcamento() {
                     !isLoading ? <div className="flex flex-row justify-center gap-20 flex-wrap mt-20 pb-[10vw]">
                         <div className="lg:w-[30vw] w-[50vw]">
                             <OrcamentoInfo data={orcamento} />
-                            <Button variant="contained" className='mt-4 !bg-[#1976d2] w-full' >
-                        <a target="_blank" href={`https://workestimate.azurewebsites.net/api/estimate/${params.id}/download`}>Baixar orçamento</a></Button>
+                            
+                        <a target="_blank" href={`https://workestimate.azurewebsites.net/api/estimate/${params.id}/download`}><Button variant="contained" className='mt-4 !bg-[#1976d2] w-full' >Baixar orçamento</Button></a>
                         </div>
                         <div>
                             <JobDetailsComponent data={orcamento.jobDetails} estimateId={orcamento.estimateId} />

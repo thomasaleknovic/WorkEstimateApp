@@ -46,7 +46,7 @@ export default function MeusOrcamentos() {
         <div className="bg-white text-black h-full">
             <div className=" flex flex-col justify-center items-center w-full pt-10">
                 <h1 className="font-bold text-[2rem]">Meus Orçamentos</h1>
-                <div className="w-3/4 mt-10 flex flex-col">
+                <div className="w-[90vw] lg:w-3/4 mt-10 flex flex-col">
 
                     <div className="place-self-end mb-10">
                     <Stack spacing={2} sx={{ width: 300 }}>

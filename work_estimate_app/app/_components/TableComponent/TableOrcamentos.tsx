@@ -37,7 +37,7 @@ function Row(props: { row: Orcamentos }) {
         <TableCell component="th" scope="row">
           {row.estimateName}
         </TableCell>
-        <TableCell align="right">{row.estimateNumber}</TableCell>
+        <TableCell align="right">{row.serviceOrder}</TableCell>
         <TableCell align="right">{row.createdAt}</TableCell>
       </TableRow>
       <TableRow>
@@ -68,13 +68,14 @@ function Row(props: { row: Orcamentos }) {
                       <TableCell align="right">{row.totalPrice}</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell align="right">
-                      <Button variant="contained" className='mt-4 !bg-[#1976d2]' >
+                    <TableCell align="left">
+                      <Button variant="contained" className=' w-[250px] mt-4 !bg-[#1976d2]' >
                         <a href={`orcamento/${row.estimateId}`}>Ver orçamento completo</a></Button>
                       </TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                   
                     </TableRow>
                 </TableBody>
               </Table>
