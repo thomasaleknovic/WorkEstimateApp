@@ -75,9 +75,9 @@ export default function InputFormComponent({data, defaultValue, type}: any) {
   return (
     <form>
           {type === "observation"  || type === "paymentMethod" ?
-          <textarea className='focus:outline-none h-10' name={type} defaultValue={defaultValue} onChange={data => handleChange(data)}/>
+          <textarea className=' h-10 bg-slate-100 p-4 rounded-xl' name={type} defaultValue={defaultValue} onChange={data => handleChange(data)}/>
           :
-          <input className='focus:outline-none h-10' name={type} type={inputType} defaultValue={defaultValue} onChange={data => handleChange(data)}/>
+          <input className=' h-10 bg-slate-100 p-4 rounded-xl' name={type} type={inputType} defaultValue={defaultValue} onChange={data => handleChange(data)}/>
         
         }
       </form>
