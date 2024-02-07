@@ -6,11 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Orcamentos } from '@/app/meus-orcamentos/page';
-import TotalPriceFormComponent from './TotalPriceFormComponent';
-
-
-
+import InputFormComponent from './InputFormComponent';
 
 
 export default function OrcamentoInfo({data}: any) {
@@ -29,7 +25,7 @@ export default function OrcamentoInfo({data}: any) {
                 Nome do cliente
               </TableCell>
               <TableCell component="th" scope="row">
-                {data.customerName}
+              <InputFormComponent data={data} defaultValue={data.customerName} type="customerName"/>
               </TableCell>
             </TableRow>
             <TableRow
@@ -40,9 +36,32 @@ export default function OrcamentoInfo({data}: any) {
                CPF
              </TableCell>
              <TableCell component="th" scope="row">
-               {data.cpf}
+             <InputFormComponent data={data} defaultValue={data.cpf} type="cpf"/>
              </TableCell>
            </TableRow>
+           <TableRow
+             
+             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+           >
+             <TableCell component="th" scope="row" className='text-xs opacity-80'>
+               Telefone
+             </TableCell>
+             <TableCell component="th" scope="row">
+             <InputFormComponent data={data} defaultValue={data.phone} type="phone"/>
+             </TableCell>
+           </TableRow>
+           <TableRow
+             
+             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+           >
+             <TableCell component="th" scope="row" className='text-xs opacity-80'>
+               CEP
+             </TableCell>
+             <TableCell component="th" scope="row">
+             <InputFormComponent data={data} defaultValue={data.cep} type="cep"/>
+             </TableCell>
+           </TableRow>
+
            <TableRow
              
              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -51,9 +70,10 @@ export default function OrcamentoInfo({data}: any) {
                Endereço
              </TableCell>
              <TableCell component="th" scope="row">
-               {data.address}
+             <InputFormComponent data={data} defaultValue={data.address} type="address"/>
              </TableCell>
            </TableRow>
+
            <TableRow
              
              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -62,7 +82,7 @@ export default function OrcamentoInfo({data}: any) {
                Forma de Pagamento
              </TableCell>
              <TableCell component="th" scope="row">
-               {data.paymentMethod}
+             <InputFormComponent data={data} defaultValue={data.paymentMethod} type="paymentMethod"/>
              </TableCell>
            </TableRow>
            <TableRow
@@ -73,7 +93,7 @@ export default function OrcamentoInfo({data}: any) {
                Observação
              </TableCell>
              <TableCell component="th" scope="row">
-               {data.observation}
+             <InputFormComponent data={data} defaultValue={data.observation} type="observation"/>
              </TableCell>
            </TableRow>
            <TableRow
@@ -84,7 +104,7 @@ export default function OrcamentoInfo({data}: any) {
                Preço final
              </TableCell>
              <TableCell component="th" scope="row">
-              <TotalPriceFormComponent data={data} />
+             <InputFormComponent data={data} defaultValue={data.totalPrice} type="totalPrice"/>
              </TableCell>
            </TableRow>
           

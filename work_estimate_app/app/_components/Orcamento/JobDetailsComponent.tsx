@@ -43,10 +43,10 @@ function EditToolbar(props: EditToolbarProps) {
 
   const handleClick = () => {
     const id = randomId();
-    setRows((oldRows) => [...oldRows, { id, title: '', description: '', quantity: '', unitPrice: '', isNew: true }]);
+    setRows((oldRows) => [...oldRows, { id,  description: '', quantity: '', unitPrice: '', isNew: true }]);
     setRowModesModel((oldModel) => ({
       ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'title' },
+      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'description' },
     }));
   };
 
@@ -70,7 +70,7 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
 
   function mySaveOnServerFunction(updatedRow: any, originalRow: any, id: string) {
 
-    if(originalRow.title.length > 1) {
+    if(originalRow.description.length > 1) {
       fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
         method: 'PUT',
         headers: {
@@ -143,7 +143,6 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
   };
 
   const columns: GridColDef[] = [
-    { field: 'title', headerName: 'Título', width: 200, editable: true },
     {
       field: 'description',
       headerName: 'Descrição',
