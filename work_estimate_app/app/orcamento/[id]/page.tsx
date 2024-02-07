@@ -5,6 +5,8 @@ import OrcamentoInfo from "@/app/_components/Orcamento/OrcamentoInfo";
 import { Orcamentos } from "@/app/meus-orcamentos/page";
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
+
 
 
 
@@ -88,16 +90,20 @@ export default function Orcamento() {
             })
     }, [])
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <div className="w-screen h-[30vw] flex justify-center items-center">
+        <h1 className="text-center font-bold text-xl">Carregando informações...</h1>
+        </div>
     if (!orcamento) return <p>No profile data</p>
 
     return (
         <main>
             <div>
                 {
-                    !isLoading ? <div className="flex flex-row flex-sh justify-center gap-20 flex-wrap mt-20 pb-[10vw]">
-                        <div className="w-[30vw]">
+                    !isLoading ? <div className="flex flex-row justify-center gap-20 flex-wrap mt-20 pb-[10vw]">
+                        <div className="lg:w-[30vw] w-[50vw]">
                             <OrcamentoInfo data={orcamento} />
+                            <Button variant="contained" className='mt-4 !bg-[#1976d2] w-full' >
+                        <a target="_blank" href={`https://workestimate.azurewebsites.net/api/estimate/${params.id}/download`}>Baixar orçamento</a></Button>
                         </div>
                         <div>
                             <JobDetailsComponent data={orcamento.jobDetails} estimateId={orcamento.estimateId} />

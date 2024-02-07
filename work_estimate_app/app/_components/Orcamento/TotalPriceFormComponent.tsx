@@ -7,20 +7,18 @@ import { Orcamentos } from '@/app/meus-orcamentos/page';
 
 export default function TotalPriceFormComponent({data}: any) {
 
-    const router = useRouter()
 
     const formContext = useForm<{
       totalPrice: number,
-      sssssssssssssssssssssssssssssss
-
   
       }>();
 
-      function handleSubmit (price: any) {
+      function handleChange (price: any) {
       
         let updateEstimate = data
-        updateEstimate.totalPrice = price
+        updateEstimate.totalPrice = price.target.value
        
+        console.log(updateEstimate)
         try {
 
           fetch(`https://workestimate.azurewebsites.net/api/estimate/${data.estimateId}/edit`, {
@@ -39,12 +37,7 @@ export default function TotalPriceFormComponent({data}: any) {
       }
   return (
     <FormContainer formContext={formContext}>
-        <Stack spacing={2}>
-          <TextFieldElement name={'totalPrice'} label={'Preço total'} onChange={data => handleSubmit(data)}/>
-          <Button type={'submit'} color={'primary'} variant="contained" className='!bg-[#1976d2] !h-14'>
-            Criar orçamento
-          </Button>
-        </Stack>
+          <input className='focus:outline-none h-10' name={'totalPrice'} type='number' defaultValue={data.totalPrice} onChange={data => handleChange(data)}/>
       </FormContainer>
   );
 }
