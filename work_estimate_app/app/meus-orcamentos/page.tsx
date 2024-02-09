@@ -6,6 +6,7 @@ import TableOrcamentos from "../_components/TableComponent/TableOrcamentos";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+import { redirect } from 'next/navigation'
 
 export type Orcamentos = {
     estimateId: string,
@@ -25,16 +26,39 @@ export default function MeusOrcamentos() {
 
     const [orcamentos, setOrcamentos] = useState<[Orcamentos]>()
     const [isLoading, setIsLoading] = useState<boolean>(true)
+  
 
     useEffect(() => {
 
-           fetch('https://workestimate.azurewebsites.net/api/estimate/all')
-          .then((res) => res.json())
-          .then((data) => {
-           setOrcamentos(data)
-            console.log(orcamentos)
-            setIsLoading(false)
-          })
+        const token = localStorage.getItem('bearerToken');
+
+        if (token) {
+            fetch('https://workestimate.azurewebsites.net/api/estimate/all', {
+              headers: {
+                'Authorization': `Bearer ${token}`,
+              },
+            })
+              .then((res) => {
+                if (!res.ok) {
+                  console.error('Requisição não autorizada.', res.status);
+                  throw new Error('Requisição não autorizada.');
+                }
+                return res.json();
+              })
+              .then((data) => {
+                setOrcamentos(data);
+                setIsLoading(false);
+              })
+              .catch((error) => {
+                console.error('An error occurred during the fetch:', error);
+                redirect('/login')
+
+              });
+          } else {
+            // Handle the case where the token is not available
+            console.error('Bearer token not found in localStorage');
+            redirect('/login')
+          }
     }, [])
 
 

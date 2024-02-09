@@ -1,9 +1,20 @@
 "use client"
 
+import { useEffect, useState } from "react";
+import { redirect } from 'next/navigation'
 import NewEstimateForm from "../_components/NewEstimateForm/NewEstimateForm";
 
 export default function NovoOrcamento() {
    
+  useEffect(() => {
+
+    const token = localStorage.getItem('bearerToken');
+
+    if (!token) {
+      console.error('Bearer token not found in localStorage');
+      redirect('/login')
+      } 
+}, [])
 
     return (
       <main>
