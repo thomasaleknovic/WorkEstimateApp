@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useState } from 'react';
+import { redirect } from 'next/navigation'
+
 
 export default function InputFormComponent({data, defaultValue, type}: any) {
 
@@ -45,14 +47,18 @@ export default function InputFormComponent({data, defaultValue, type}: any) {
         if (type === "customerName") {
             updateEstimate.customerName = info.target.value
         }
+
+        const token = localStorage.getItem('bearerToken');
         
-        console.log("!!!!!!!!!!!!!!!!!Rodou a função!!!!!!!!!!!!!!!!!!!!!!!!!")
+        if (token) {
+
         try {
           
           fetch(`https://workestimate.azurewebsites.net/api/estimate/${data.estimateId}/edit`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
               
             },
             body: JSON.stringify(updateEstimate),
@@ -61,6 +67,12 @@ export default function InputFormComponent({data, defaultValue, type}: any) {
           
         } catch {
           throw new Error("Erro ao atualizar orçamento, revise os dados e tente novamente.")
+        }
+
+        } else {
+          // Handle the case where the token is not available
+          console.error('Bearer token not found in localStorage');
+          redirect('/login')
         }
      
     }, 1000); // 1000 milissegundos (1 segundo) de intervalo

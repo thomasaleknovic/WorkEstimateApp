@@ -104,7 +104,7 @@ export default function OrcamentoInfo({data}: any) {
                Preço final
              </TableCell>
              <TableCell component="th" scope="row">
-             <InputFormComponent data={data} defaultValue={data.totalPrice} type="totalPrice"/>
+             {data.totalPrice}
              </TableCell>
            </TableRow>
           

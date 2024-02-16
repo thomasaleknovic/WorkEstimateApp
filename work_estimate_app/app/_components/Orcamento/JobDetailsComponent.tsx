@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from 'react';
+import { redirect } from 'next/navigation'
+import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -64,21 +66,26 @@ export default function JobDetailsComponent(data: any) {
 const initialRows: GridRowsProp = data.data;
 const [rows, setRows] = React.useState(initialRows);
 const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
-
+const router = useRouter();
 
  
 
   function mySaveOnServerFunction(updatedRow: any, originalRow: any, id: string) {
+  
+    const token = localStorage.getItem('bearerToken');
+        
+    if (token) {
 
-    if(originalRow.description.length > 1) {
-      fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          
-        },
-        body: JSON.stringify(updatedRow),
-      })
+        if(originalRow.description.length > 1) {
+          fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+              
+            },
+            body: JSON.stringify(updatedRow),
+          })
       
     } else {
 
@@ -86,14 +93,22 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
           
         },
         body: JSON.stringify(updatedRow),
       })
      
     }
+
     setRows(rows.map((row) => (row.id === updatedRow.id ? updatedRow : row)));
     return updatedRow;
+
+    } else {
+    // Handle the case where the token is not available
+    console.error('Bearer token not found in localStorage');
+    redirect('/login')
+  }
     
 }
 
