@@ -5,6 +5,8 @@ import { Stack } from '@mui/material';
 import { useRouter } from 'next/navigation'
 
 
+
+
 export default function NewEstimateForm() {
   
 
@@ -25,13 +27,17 @@ export default function NewEstimateForm() {
 
       function handleSubmit (data: any) {
 
-       
-        try {
+        const token = localStorage.getItem('bearerToken');
 
+        if (token) {
+
+        try {
+          console.log(token)
           fetch("https://workestimate.azurewebsites.net/api/estimate/new", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
               
             },
             body: JSON.stringify(data),
@@ -40,8 +46,13 @@ export default function NewEstimateForm() {
           
         } catch {
 
+        }}
+        else {
+          // Handle the case where the token is not available
+          console.error('Bearer token not found in localStorage');
+          router.push('/login')
         }
-       return router.push('/meus-orcamentos')
+      //  return router.push('/meus-orcamentos')
       }
 
     return (

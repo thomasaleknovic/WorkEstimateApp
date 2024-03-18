@@ -66,7 +66,6 @@ export default function JobDetailsComponent(data: any) {
 const initialRows: GridRowsProp = data.data;
 const [rows, setRows] = React.useState(initialRows);
 const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
-const router = useRouter();
 
  
 

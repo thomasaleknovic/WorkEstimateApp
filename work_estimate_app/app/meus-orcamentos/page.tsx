@@ -6,7 +6,8 @@ import TableOrcamentos from "../_components/TableComponent/TableOrcamentos";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+
 
 export type Orcamentos = {
     estimateId: string,
@@ -26,6 +27,9 @@ export default function MeusOrcamentos() {
 
     const [orcamentos, setOrcamentos] = useState<[Orcamentos]>()
     const [isLoading, setIsLoading] = useState<boolean>(true)
+
+    const router = useRouter()
+
   
 
     useEffect(() => {
@@ -51,13 +55,13 @@ export default function MeusOrcamentos() {
               })
               .catch((error) => {
                 console.error('An error occurred during the fetch:', error);
-                redirect('/login')
+                router.push('/login')
 
               });
           } else {
             // Handle the case where the token is not available
             console.error('Bearer token not found in localStorage');
-            redirect('/login')
+             return router.push('/login')
           }
     }, [])
 
