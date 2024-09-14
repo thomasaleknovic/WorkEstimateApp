@@ -33,7 +33,7 @@ export default function NewEstimateForm() {
 
         try {
           console.log(token)
-          fetch("https://workestimate.azurewebsites.net/api/estimate/new", {
+          fetch("https://workestimateapi.onrender.com/api/estimate/new", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

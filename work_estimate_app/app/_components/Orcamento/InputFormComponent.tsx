@@ -54,7 +54,7 @@ export default function InputFormComponent({data, defaultValue, type}: any) {
 
         try {
           
-          fetch(`https://workestimate.azurewebsites.net/api/estimate/${data.estimateId}/edit`, {
+          fetch(`https://workestimateapi.onrender.com/api/estimate/${data.estimateId}/edit`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

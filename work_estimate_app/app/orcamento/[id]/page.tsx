@@ -25,7 +25,7 @@ export default function Orcamento() {
         const token = localStorage.getItem('bearerToken');
 
         if (token) {
-            fetch(`https://workestimate.azurewebsites.net/api/estimate/${params.id}`, {
+            fetch(`https://workestimateapi.onrender.com/api/estimate/${params.id}`, {
               headers: {
                 'Authorization': `Bearer ${token}`,
               },
@@ -67,7 +67,7 @@ export default function Orcamento() {
                         <div className="lg:w-[30vw] w-[50vw]">
                             <OrcamentoInfo data={orcamento} />
                             
-                        <a target="_blank" href={`https://workestimate.azurewebsites.net/api/estimate/${params.id}/download`}><Button variant="contained" className='mt-4 !bg-[#1976d2] w-full' >Baixar orçamento</Button></a>
+                        <a target="_blank" href={`https://workestimateapi.onrender.com/api/estimate/${params.id}/download`}><Button variant="contained" className='mt-4 !bg-[#1976d2] w-full' >Baixar orçamento</Button></a>
                         </div>
                         <div>
                             <JobDetailsComponent data={orcamento.jobDetails} estimateId={orcamento.estimateId} />

@@ -37,7 +37,7 @@ export default function MeusOrcamentos() {
         const token = localStorage.getItem('bearerToken');
 
         if (token) {
-            fetch('https://workestimate.azurewebsites.net/api/estimate/all', {
+            fetch('https://workestimateapi.onrender.com/api/estimate/all', {
               headers: {
                 'Authorization': `Bearer ${token}`,
               },

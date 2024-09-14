@@ -76,7 +76,7 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
     if (token) {
 
         if(originalRow.description.length > 1) {
-          fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
+          fetch(`https://workestimateapi.onrender.com/api/estimate/${id}/edit/details`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
       
     } else {
 
-      fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
+      fetch(`https://workestimateapi.onrender.com/api/estimate/${id}/edit/details`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
   const handleDeleteClick = (jobDetailId: GridRowId, id: string) => () => {
     setRows(rows.filter((row) => row.id !== id));
 
-    fetch(`https://workestimate.azurewebsites.net/api/estimate/${id}/edit/details`, {
+    fetch(`https://workestimateapi.onrender.com/api/estimate/${id}/edit/details`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
