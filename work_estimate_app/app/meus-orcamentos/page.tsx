@@ -4,10 +4,8 @@
 import { useEffect, useState } from "react";
 import TableOrcamentos from "../_components/TableComponent/TableOrcamentos";
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
-import Autocomplete from '@mui/material/Autocomplete';
 import { useRouter } from 'next/navigation'
 
 
@@ -29,6 +27,7 @@ export default function MeusOrcamentos() {
 
     const [orcamentos, setOrcamentos] = useState<[Orcamentos]>()
     const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [searchQuery ,setSearchQuery] = useState<String>()
 
     const router = useRouter()
 
@@ -67,6 +66,16 @@ export default function MeusOrcamentos() {
           }
     }, [])
 
+    const filterData = (query, data) => {
+      if (!query) {
+        return data;
+      } else {
+        return data.filter((d) => d.serviceOrder.toString().includes(query));
+      }
+    };
+
+    const dataFiltered = filterData(searchQuery, orcamentos);
+
 
     if (isLoading) return <div className="flex mt-[200px] flex-col justify-center items-center"><CircularProgress/><p className="mt-4">Carregando informações</p></div>
     if (!orcamentos) return <div className="flex mt-[200px] flex-col justify-center items-center"><p className="mb-4">Nenhum registro encontrado</p><a href="/novo-orcamento"><Button color={'primary'} variant="contained" className='!bg-[#1976d2] !h-14'>
@@ -83,27 +92,10 @@ export default function MeusOrcamentos() {
                 <div className="w-[90vw] lg:w-3/4 mt-10 flex flex-col">
 
                     <div className="place-self-end mb-10">
-                    <Stack spacing={2} sx={{ width: 300 }}>
-                        <Autocomplete
-                            freeSolo
-                            id="free-solo-2-demo"
-                            disableClearable
-                            options={orcamentos.map((option) => option.estimateNumber)}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Procure pelo número do orçamento"
-                                    InputProps={{
-                                        ...params.InputProps,
-                                        type: 'search',
-                                    }}
-                                />
-                            )}
-                        />
-                    </Stack>
+                    <TextField className="w-[300px]" id="search-input" label="Procure pelo número do orçamento" variant="outlined" onInput={(e) => {setSearchQuery(e.target.value)}}/>
                     </div>
                     {
-                        !isLoading ? <TableOrcamentos data={orcamentos} /> : <div></div>
+                        !isLoading ? <TableOrcamentos data={dataFiltered} /> : <div></div>
                     }
                 </div>
 
