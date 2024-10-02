@@ -98,9 +98,9 @@ export default function TableOrcamentos ({data}: any ) {
             <TableHead className='bg-[#456600]'>
               <TableRow>
                 <TableCell />
-                <TableCell className='font-bold text-white text-lg'>Orçamento</TableCell>
-                <TableCell align="right" className='font-bold text-white text-lg'>Nº do Orçamento</TableCell>
-                <TableCell align="right" className='font-bold text-white text-lg'>Data de Criação</TableCell>
+                <TableCell className='font-bold !text-white text-lg'>Orçamento</TableCell>
+                <TableCell align="right" className='font-bold !text-white text-lg'>Nº do Orçamento</TableCell>
+                <TableCell align="right" className='font-bold !text-white text-lg'>Data de Criação</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
