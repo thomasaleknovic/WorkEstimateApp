@@ -27,7 +27,7 @@ export default function MeusOrcamentos() {
 
     const [orcamentos, setOrcamentos] = useState<[Orcamentos]>()
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [searchQuery ,setSearchQuery] = useState<String>()
+    const [searchQuery ,setSearchQuery] = useState<string>()
 
     const router = useRouter()
 
@@ -66,10 +66,10 @@ export default function MeusOrcamentos() {
           }
     }, [])
 
-    const filterData = (query, data) => {
+    const filterData = (query:string | undefined, data:Orcamentos[] | undefined) => {
       if (!query) {
         return data;
-      } else {
+      } else if (data) {
         return data.filter((d) => d.serviceOrder.toString().includes(query));
       }
     };
@@ -92,7 +92,7 @@ export default function MeusOrcamentos() {
                 <div className="w-[90vw] lg:w-3/4 mt-10 flex flex-col">
 
                     <div className="place-self-end mb-10">
-                    <TextField className="w-[300px]" id="search-input" label="Procure pelo número do orçamento" variant="outlined" onInput={(e) => {setSearchQuery(e.target.value)}}/>
+                    <TextField className="w-[300px]" id="search-input" label="Procure pelo número do orçamento" variant="outlined" onInput={(e) => {setSearchQuery((e.target as HTMLInputElement).value)}}/>
                     </div>
                     {
                         !isLoading ? <TableOrcamentos data={dataFiltered} /> : <div></div>
