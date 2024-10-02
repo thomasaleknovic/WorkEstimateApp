@@ -95,12 +95,12 @@ export default function TableOrcamentos ({data}: any ) {
     return (
         <TableContainer component={Paper}>
           <Table aria-label="collapsible table">
-            <TableHead>
+            <TableHead className='bg-[#8AC903]'>
               <TableRow>
                 <TableCell />
-                <TableCell>Orçamento</TableCell>
-                <TableCell align="right">Número do Orçamento</TableCell>
-                <TableCell align="right">Data de Criação</TableCell>
+                <TableCell className='font-bold text-white text-lg'>Orçamento</TableCell>
+                <TableCell align="right" className='font-bold text-white text-lg'>Nº do Orçamento</TableCell>
+                <TableCell align="right" className='font-bold text-white text-lg'>Data de Criação</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
