@@ -41,7 +41,7 @@ function Header() {
   };
   const theme = createTheme({
     palette: {
-      green: {
+      primary: {
         main: '#8AC903',
         light: '#B8F042',
         dark: '#425F03',
@@ -51,7 +51,7 @@ function Header() {
   });
   return (
     <ThemeProvider theme={theme}>
-    <AppBar position="static" color="green" >
+    <AppBar position="static" color="primary" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
      
