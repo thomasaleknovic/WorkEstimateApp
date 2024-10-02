@@ -14,9 +14,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import Image from 'next/image'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const pages = ['Meus Orçamentos', 'Novo Orçamento'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -36,9 +39,19 @@ function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const theme = createTheme({
+    palette: {
+      green: {
+        main: '#8AC903',
+        light: '#B8F042',
+        dark: '#425F03',
+        contrastText: '#242105',
+      },
+    },
+  });
   return (
-    <AppBar position="static">
+    <ThemeProvider theme={theme}>
+    <AppBar position="static" color="green" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
      
@@ -97,19 +110,30 @@ function Header() {
           >
             LOGO
           </Typography> 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="flex justify-between items-center">
+            <div className="flex items-center">
+            <Image
+            src="/Estimae_Logo_Branco.png"
+            width={50}
+            height={50}
+            alt="Picture of the author"
+            ></Image>
+            <p className="ml-6 text-white">Olá, <span className="font-bold">EcoHidro!</span></p>
+            </div>
+            <div className="flex items-center">
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <a href={`${page == "Meus Orçamentos" ? "/meus-orcamentos" : "/novo-orcamento"}`}>
+                <a className="normal-case" href={`${page == "Meus Orçamentos" ? "/meus-orcamentos" : "/novo-orcamento"}`}>
                 {page}
                 </a>
-                
               </Button>
+              
             ))}
+            </div>
           </Box>
 
           {/* <Box sx={{ flexGrow: 0 }}>
@@ -144,6 +168,7 @@ function Header() {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 }
 export default Header;
