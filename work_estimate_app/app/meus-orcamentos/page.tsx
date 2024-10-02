@@ -6,6 +6,7 @@ import TableOrcamentos from "../_components/TableComponent/TableOrcamentos";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useRouter } from 'next/navigation'
 
@@ -67,8 +68,11 @@ export default function MeusOrcamentos() {
     }, [])
 
 
-    if (!isLoading) return <div className="flex mt-[200px] flex-col justify-center items-center"><CircularProgress/><p className="mt-4">Carregando informações</p></div>
-    if (!orcamentos) return <p>No profile data</p>
+    if (isLoading) return <div className="flex mt-[200px] flex-col justify-center items-center"><CircularProgress/><p className="mt-4">Carregando informações</p></div>
+    if (!orcamentos) return <div className="flex mt-[200px] flex-col justify-center items-center"><p className="mb-4">Nenhum registro encontrado</p><a href="/novo-orcamento"><Button color={'primary'} variant="contained" className='!bg-[#1976d2] !h-14'>
+    Crie seu primeiro orçamento
+  </Button></a></div>
+  
 
 
 
