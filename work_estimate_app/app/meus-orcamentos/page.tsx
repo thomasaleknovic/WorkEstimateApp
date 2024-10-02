@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import TableOrcamentos from "../_components/TableComponent/TableOrcamentos";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useRouter } from 'next/navigation'
 
@@ -66,7 +67,7 @@ export default function MeusOrcamentos() {
     }, [])
 
 
-    if (isLoading) return <p>Loading...</p>
+    if (!isLoading) return <div className="flex mt-[200px] flex-col justify-center items-center"><CircularProgress/><p className="mt-4">Carregando informações</p></div>
     if (!orcamentos) return <p>No profile data</p>
 
 
