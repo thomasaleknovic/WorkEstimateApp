@@ -54,7 +54,7 @@ function EditToolbar(props: EditToolbarProps) {
 
   return (
     <GridToolbarContainer>
-      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+      <Button color="primary" startIcon={<AddIcon />} onClick={handleClick} className="!text-[#8AC903]">
         Adicionar item
       </Button>
     </GridToolbarContainer>

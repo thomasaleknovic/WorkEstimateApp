@@ -78,7 +78,7 @@ export default function MeusOrcamentos() {
 
 
     if (isLoading) return <div className="flex mt-[200px] flex-col justify-center items-center"><CircularProgress/><p className="mt-4">Carregando informações</p></div>
-    if (!orcamentos) return <div className="flex mt-[200px] flex-col justify-center items-center"><p className="mb-4">Nenhum registro encontrado</p><a href="/novo-orcamento"><Button color={'primary'} variant="contained" className='!bg-[#1976d2] !h-14'>
+    if (!orcamentos) return <div className="flex mt-[200px] flex-col justify-center items-center"><p className="mb-4">Nenhum registro encontrado</p><a href="/novo-orcamento"><Button color={'primary'} variant="contained" className='!bg-[#8AC903] !h-14'>
     Crie seu primeiro orçamento
   </Button></a></div>
   
@@ -87,18 +87,24 @@ export default function MeusOrcamentos() {
 
     return (
         <div className="bg-white text-black h-full">
-            <div className=" flex flex-col justify-center items-center w-full pt-10">
-                <h1 className="font-bold text-[2rem]">Meus Orçamentos</h1>
-                <div className="w-[90vw] lg:w-3/4 mt-10 flex flex-col">
-
-                    <div className="place-self-end mb-10">
-                    <TextField className="w-[300px]" id="search-input" label="Procure pelo número do orçamento" variant="outlined" onInput={(e) => {setSearchQuery((e.target as HTMLInputElement).value)}}/>
-                    </div>
+            <div className=" flex flex-col justify-center items-center w-full">
+            <div className="w-full h-[200px] bg-[#8AC903] flex justify-center items-center">
+              <div className="w-[300px] lg:w-3/4  flex justify-between items-center">
+            <h1 className="font-bold text-[2rem] text-white">Meus Orçamentos</h1>
+           
+                    <TextField className="w-[300px] bg-white rounded-[4px]" id="search-input" label="Procure pelo número do orçamento" variant="outlined" onInput={(e) => {setSearchQuery((e.target as HTMLInputElement).value)}}/>
+              </div>
+                    
+            </div>
+                <div className="w-[90vw] lg:w-3/4 -mt-8 flex flex-col">
                     {
                         !isLoading ? <TableOrcamentos data={dataFiltered} /> : <div></div>
                     }
                 </div>
 
+            <a href="/novo-orcamento"><Button color={'primary'} variant="contained" className='!bg-[#8AC903] !h-14 mt-6'>
+    Criar Novo Orçamento
+  </Button></a>
             </div>
 
         </div>

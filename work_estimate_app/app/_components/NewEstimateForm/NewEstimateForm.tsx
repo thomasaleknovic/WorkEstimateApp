@@ -25,6 +25,8 @@ export default function NewEstimateForm() {
   
       }>();
 
+
+
       function handleSubmit (data: any) {
 
         const token = localStorage.getItem('bearerToken');
@@ -56,17 +58,19 @@ export default function NewEstimateForm() {
       }
 
     return (
-        <FormContainer formContext={formContext} onSuccess={data => handleSubmit(data)}>
-        <Stack spacing={2}>
-          <TextFieldElement name={'estimateName'} label={'Nome do orçamento'} />
+        <FormContainer  formContext={formContext} onSuccess={data => handleSubmit(data)} >
+        <Stack spacing={2} className="mb-40">
+          <TextFieldElement name={'estimateName'} label={'Nome do orçamento'} className="bg-white rounded-[4px]" />
           <TextFieldElement name={'customerName'} label={'Nome do cliente'} />
           <TextFieldElement name={'phone'} label={'Telefone do cliente'} />
           <TextFieldElement name={'cpf'} label={'CPF do cliente'} />
           <TextFieldElement name={'cep'} label={'CEP do cliente'} />
           <TextFieldElement name={'address'} label={'Endereço do cliente'} />
           <TextFieldElement name={'paymentMethod'} label={'Forma de pagamento'} />
-          <TextFieldElement name={'observation'} label={'Observação'} />
-          <Button type={'submit'} color={'primary'} variant="contained" className='!bg-[#1976d2] !h-14'>
+          <TextFieldElement name={'observation'} label={'Observação'}
+          multiline
+          />
+          <Button type={'submit'} color='primary' variant="contained" className='!bg-[#8AC903] !h-14'>
             Criar orçamento
           </Button>
         </Stack>

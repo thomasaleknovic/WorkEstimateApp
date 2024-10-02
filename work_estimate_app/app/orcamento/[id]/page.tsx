@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation'
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import { redirect } from 'next/navigation'
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 
@@ -54,10 +55,11 @@ export default function Orcamento() {
     
 
 
-    if (isLoading) return <div className="w-screen h-[30vw] flex justify-center items-center">
-        <h1 className="text-center font-bold text-xl">Carregando informações...</h1>
-        </div>
-    if (!orcamento) return <p>No profile data</p>
+    if (isLoading) return <div className="flex mt-[200px] flex-col justify-center items-center"><CircularProgress/><p className="mt-4">Carregando informações</p></div>
+
+    if (!orcamento) return <div className="flex mt-[200px] flex-col justify-center items-center"><p className="mb-4">Nenhum registro encontrado</p><a href="/novo-orcamento"><Button color={'primary'} variant="contained" className='!bg-[#1976d2] !h-14'>
+    Crie seu primeiro orçamento
+  </Button></a></div>
 
     return (
         <main>
@@ -67,7 +69,7 @@ export default function Orcamento() {
                         <div className="lg:w-[30vw] w-[50vw]">
                             <OrcamentoInfo data={orcamento} />
                             
-                        <a target="_blank" href={`https://workestimateapi.onrender.com/api/estimate/${params.id}/download`}><Button variant="contained" className='mt-4 !bg-[#1976d2] w-full' >Baixar orçamento</Button></a>
+                        <a target="_blank" href={`https://workestimateapi.onrender.com/api/estimate/${params.id}/download`}><Button variant="contained" className='mt-4 !bg-[#8AC903] w-full' >Baixar orçamento</Button></a>
                         </div>
                         <div>
                             <JobDetailsComponent data={orcamento.jobDetails} estimateId={orcamento.estimateId} />

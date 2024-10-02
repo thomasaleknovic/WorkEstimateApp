@@ -69,7 +69,7 @@ function Row(props: { row: Orcamentos }) {
                     </TableRow>
                     <TableRow>
                     <TableCell align="left">
-                      <Button variant="contained" className=' w-[250px] mt-4 !bg-[#1976d2]' >
+                      <Button variant="contained" className=' w-[250px] mt-4 !bg-[#8AC903]' >
                         <a href={`orcamento/${row.estimateId}`}>Ver orçamento completo</a></Button>
                       </TableCell>
                     <TableCell></TableCell>
@@ -95,7 +95,7 @@ export default function TableOrcamentos ({data}: any ) {
     return (
         <TableContainer component={Paper}>
           <Table aria-label="collapsible table">
-            <TableHead className='bg-[#8AC903]'>
+            <TableHead className='bg-[#456600]'>
               <TableRow>
                 <TableCell />
                 <TableCell className='font-bold text-white text-lg'>Orçamento</TableCell>

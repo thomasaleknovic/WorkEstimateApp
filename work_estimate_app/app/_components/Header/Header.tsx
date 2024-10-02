@@ -112,12 +112,14 @@ function Header() {
           </Typography> 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="flex justify-between items-center">
             <div className="flex items-center">
+              <a href="/meus-orcamentos">
             <Image
             src="/Estimae_Logo_Branco.png"
             width={50}
             height={50}
             alt="Picture of the author"
             ></Image>
+              </a>
             <p className="ml-6 text-white">Olá, <span className="font-bold">EcoHidro!</span></p>
             </div>
             <div className="flex items-center">
